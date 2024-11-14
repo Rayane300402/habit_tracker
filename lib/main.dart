@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/database/habit_db.dart';
 import 'package:habit_tracker/pages/home_page.dart';
 import 'package:habit_tracker/theme/themeProvider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main()  async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HabitDatabase.initialize();
+  await HabitDatabase().saveFirstLaunchDate();
   runApp(
       MultiProvider(
           providers: [
